@@ -6,11 +6,9 @@ export const remove = async () => {
     }
     catch(error) {
         if (error.code === 'ENOENT') {
-            throw Error('FS operation failed');
+            throw new Error('FS operation failed');
         } 
         else
             throw error;
     }
 };
-
-remove();
