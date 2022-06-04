@@ -1,4 +1,3 @@
-import { readdir } from 'node:fs';
 import  *  as fs from 'node:fs/promises';
 
 export const list = async () => {
@@ -16,5 +15,3 @@ export const list = async () => {
             throw error;
     }
 };
-
-list();
