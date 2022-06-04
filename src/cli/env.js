@@ -3,5 +3,3 @@ export const parseEnv = () => {
     env = env.filter(([key, value]) => key.indexOf('RSS_') === 0);
     console.log(env.map(([key, value]) => `${key}=${value}`).join('; ')); 
 };
-
-parseEnv();
