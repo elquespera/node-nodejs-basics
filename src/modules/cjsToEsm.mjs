@@ -2,8 +2,9 @@
 import { fileURLToPath } from 'node:url';
 
 import path from 'node:path';
+import { readFile } from 'node:fs/promises';
 import { release, version } from 'node:os';
-import { createServerHttp }  from 'node:http.createServer';
+import { createServer as createServerHttp}  from 'http';
 import './files/c.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,13 +13,14 @@ const __dirname = path.dirname(__filename);
 
 const random = Math.random();
 
-let unknownObject;
-
+let unknownObjectPath;
 if (random > 0.5) {
-    unknownObject = import('./files/a.json');
+    unknownObjectPath = './files/a.json';
 } else {
-    unknownObject = import('./files/b.json');
+    unknownObjectPath = './files/b.json';
 }
+const unknownObject = JSON.parse(await readFile(path.resolve(__dirname, unknownObjectPath)));
+
 
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
