@@ -6,11 +6,7 @@ const __dir = path.dirname(fileURLToPath(import.meta.url));
 import * as cp from 'child_process';
 
 export const spawnChildProcess = async (args) => {    
-    const child = cp.fork(`${path.resolve(__dir, 'files/script.js')}`, process.argv);
-    
-    child.on('message', data => {
-      console.log(`stdout: ${data}`);
-    });
+    const child = cp.fork(`${path.resolve(__dir, 'files/script.js')}`, process.argv);    
 };
 
 //Testing
