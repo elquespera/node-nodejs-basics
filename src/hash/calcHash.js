@@ -4,33 +4,19 @@ import * as path from 'node:path';
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 
 import * as fs from 'node:fs/promises';
-import * as stream from "node:stream/promises";
 const { createHash } = await import('crypto');
 
 export const calculateHash = async () => {
     const from = path.resolve(__dir, 'files/fileToCalculateHashFor.txt'); 
-    try {           
-        // // Open file handle for reading
-        // const handle = await fs.open(from, 'r');
-        // // Create readable stream
-        // const readable = handle.createReadStream({encoding: "utf8"});
+    try {                   
         // Create hash transform stream
-        const hash = createHash('sha256', { });
-
+        const hash = createHash('sha256');
+        // Read data from file
         const data = await fs.readFile(from, { encoding: 'utf8' });
-
-        //console.log(typeof data);
-
+        // Feed data to hash stream
         hash.update(data);
-
+        // Return calculated hash as hex
         return hash.digest('hex');
-        
-        // Pipe it to hash, change encoding to hex
-        // and pipe it to stdout
-        // await stream.pipeline (
-        //     readable,
-        //     hash.setEncoding('hex'),
-        // );        
     }
     catch(error) {
         throw error;
