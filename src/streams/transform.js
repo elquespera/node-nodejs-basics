@@ -2,6 +2,7 @@ import * as stream from "node:stream/promises";
 import { Transform } from "node:stream";
 
 export const transform = async () => { 
+    //Create new transform stream
     const transformStream = new Transform({
         transform(chunk, encoding, callback) {
             //Convert data to string and remove trailing EOL character

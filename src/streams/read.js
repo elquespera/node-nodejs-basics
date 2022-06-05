@@ -6,10 +6,10 @@ const __dir = path.dirname(fileURLToPath(import.meta.url));
 import * as fs from 'node:fs/promises';
 
 export const read = async () => {
-    const from = 'files/fileToRead.txt'; 
+    const from = path.resolve(__dir, 'files/fileToRead.txt'); 
     try {   
         // Open file handle for reading
-        const handle = await fs.open(path.resolve(__dir, from), 'r');
+        const handle = await fs.open(from, 'r');
         // Create readable fs Stream
         const readable = handle.createReadStream({encoding: "utf8"});
         // Read Data from the stream
